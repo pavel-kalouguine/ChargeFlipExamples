@@ -1,0 +1,7 @@
+[deps]
+CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
+ChargeFlipPhaser = "932843b2-4280-42b7-9350-1fdceb79e920"
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+GLMakie = "e9467ef8-e4e7-5192-8a1a-b1aee30e663a"
+SpaceGroups = "c9e7fe64-f4ce-462e-96f2-f923a4d16e38"
+StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
