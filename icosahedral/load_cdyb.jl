@@ -29,6 +29,7 @@ inconsistency = metric_data_inconsistency(dd)
 t = CSV.File(datafilepath; header=7, skipto=9, delim=' ', ignorerepeated=true)
 dt = DataFrame(t)
 ratio_q = Vector{Float64}()
+count_weak_peaks=0
 for r in eachrow(dt)
     k = SVector{6,Int}(Int(r.n1), Int(r.n2), Int(r.n3), Int(r.n4), Int(r.n5), Int(r.n6))
     I = r.I
@@ -37,14 +38,17 @@ for r in eachrow(dt)
         n=add_peak!(dd, k, I)
         if n==0
             @warn "Wavevector $k already added."
+        elseif r.Mul != n
+            @warn "The actual peak multiplicity $n is not equal to the given value $(r.Mul) for the peak $k"
         end
     else
-        @warn "Skipping the peak $k with I=$I and Sigma(I)=$dI"
+        global count_weak_peaks+=1  
     end
     # Sanity check:
     qpar = r.Qpar * (sqrt(2) * π / a)
     push!(ratio_q, qpar / norm(kpar(k)))
 end
+@warn "Skipped $count_weak_peaks peaks with intensity uncertainties exceeding the measured values"
 @info "Sanity check: $(minimum(ratio_q)) <= q_par/k_par <= $(maximum(ratio_q))"
 
 # Compute the formfactors to apply to the diffraction data

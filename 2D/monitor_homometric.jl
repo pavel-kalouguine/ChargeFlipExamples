@@ -17,7 +17,7 @@ function example_monitor()
 
     Base.display(pm.fig)
     do_phasing!(phaser, hooks=MonitorHooks(pm),
-        algorithm=SweepDown(decrement=0.999))
+        algorithm=SweepDown(fraction_flipped=0.8, decrement=0.999))
 end
 
 example_monitor()
