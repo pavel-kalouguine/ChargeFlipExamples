@@ -30,3 +30,8 @@ Datasets correspond to these publications:
 **6**(1), 58–63
 - Buganski, I., Wolny, J. & Takakura, H. (2020). *Foundations of Crystallography*, **76**(2), 180–196.
 
+## Benchmarks for the Proceedings of ICQ16
+
+- `icosahedral/sampling_stats.jl` : A script producing the histograms for the filling factors of the sampling grids
+- `icosahedral/statistics_cdyb.jl` : A script to produce the plot of evolution of deciles of the charge density during phasing (with the data for CdYb)
+- `icosahedral/convergence.jl` : A script to plot the hystorgram of the convergence moments.
