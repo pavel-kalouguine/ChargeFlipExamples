@@ -1,9 +1,8 @@
 using ChargeFlipPhaser, GLMakie
 
+include(joinpath(@__DIR__, "load_znmgtm.jl"))
+
 function example_monitor()
-    include(joinpath(@__DIR__, "load_znmgtm.jl"))
-
-
     phaser = Phaser(ZnMgTm.dd, ZnMgTm.formfactors)
     pm = PhasingMonitor(phaser)
 
