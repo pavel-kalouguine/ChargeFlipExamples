@@ -6,13 +6,7 @@ struct JSONSaver <: AbstractSaver
     output_file_path::String
 end
 
-rational_pair(x::Rational) = [numerator(x), denominator(x)]
-
-matrix_rows(m) = [collect(r) for r in eachrow(m)]
-
-function encode_element(g)
-    Dict("a" => matrix_rows(g.a), "b" => [rational_pair(x) for x in g.b])
-end
+element_string(g) = "@" * sprint(show, g)
 
 function save_result(saver::JSONSaver, phaser::Phaser, wa::WorkingAmplitudes)
     dd = phaser.dd
@@ -34,14 +28,9 @@ function save_result(saver::JSONSaver, phaser::Phaser, wa::WorkingAmplitudes)
         "ampl" => [real(ampl[j]), imag(ampl[j])],
     ) for j in eachindex(bps)]
 
-    D, N = size(dd.md)
     payload = Dict(
-        "dimensions" => Dict("N" => N, "D" => D),
-        "space_group" => Dict(
-            "order" => length(dd.G),
-            "elements" => [encode_element(g) for g in dd.G],
-        ),
-        "metric" => Dict("md" => matrix_rows(dd.md)),
+        "space_group" => [element_string(g) for g in dd.G],
+        "metric" => sprint(show, dd.md),
         "reflections" => reflections,
     )
 
