@@ -1,9 +1,11 @@
 using ChargeFlipPhaser, GLMakie
 
-function example_monitor()
-    include("homometric.jl")
+include("homometric.jl")
 
-    dd = Homometric.dd
+function example_monitor()
+    
+
+    dd= Homometric.generate_difdata(30.0)
 
     # Create a phaser with the generated diffraction data and a form factor function
     formfactors = formfactors_synthetic(dd, ball_autocorr)
@@ -17,7 +19,7 @@ function example_monitor()
 
     Base.display(pm.fig)
     do_phasing!(phaser, hooks=MonitorHooks(pm),
-        algorithm=SweepDown(fraction_flipped=0.8, decrement=0.999))
+        algorithm=SweepDown(fraction_flipped=0.7, decrement=0.995), max_iterations=1000)
 end
 
 example_monitor()

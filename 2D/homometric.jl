@@ -25,6 +25,6 @@ function generate_difdata(r::Real)
     dd
 end
 
-dd= generate_difdata(15.0)
+
 
 end
