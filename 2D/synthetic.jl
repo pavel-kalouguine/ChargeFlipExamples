@@ -1,4 +1,4 @@
-using StaticArrays, ChargeFlipPhaser, SpaceGroups, LinearAlgebra
+using StaticArrays, ChargeFlipPhaser, SpaceGroups, LinearAlgebra, GLMakie
 
 include(joinpath(@__DIR__, "..", "savers", "json_saver.jl"))
 
