@@ -55,7 +55,7 @@ function example_monitor()
 
     # Watch the density converge in a live window.
     pm = PhasingMonitor(phaser)
-    s = Cut2D([1 0; 0 1], [0.0, 0.0], (512, 512)) # one unit cell
+    s = Cut2D([2 0; 0 2], [0.0, 0.0], (512, 512)) # one unit cell
     add_panel!(pm, (1, 1), s, "pg synthetic structure", 1.0)
     Base.display(pm.fig)
 
